@@ -31,7 +31,7 @@ if ingredients_list:
   
     for ingredient in ingredients_list:
         
-        ingredient_string += ingredient + ', '
+        ingredient_string += ingredient + ' '
 
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == ingredient, 'SEARCH_ON'].iloc[0]
         st.write('The search value for ', ingredient,' is ', search_on, '.')
