@@ -1,5 +1,6 @@
 import streamlit as st
 from snowflake.snowpark.functions import col 
+import requests
 
 st.title(" :cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
 st.write("Choose the fruits you want to customize your smoothie...")
@@ -33,3 +34,7 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your smoothie is ordered, {}!'.format(name_on_order), icon="✅")
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+json_data = st.text(fruityvice_response.json())
+fv_df = st.dataframe(data=json_data, use_container_width=True)
